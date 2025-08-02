@@ -1,8 +1,20 @@
-process.stdin.setEncoding('utf8');
+//process.stdin.pipe(process.stdout);
+import { Readable } from 'stream';
 
-console.log('Digite algo:');
+class OneToHundredStream extends Readable {
+    index = 1
+    _read() {
+        const i = this.index++;
 
-process.stdin.on('data', (data) => {
-  console.log(`Você digitou: ${data.trim()}`);
-  process.exit();
-});
+        setTimeout(() => {
+            if (i > 100) {
+                this.push(null);
+            } else {
+                this.push(String(i));
+            }
+        }, 1000);
+
+    }
+}
+
+new OneToHundredStream().pipe(process.stdout);
