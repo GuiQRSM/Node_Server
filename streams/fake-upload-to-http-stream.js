@@ -1,11 +1,13 @@
-import {Readable} from 'node:stream'
+import { realpathSync } from 'node:fs';
+import { Duplex, Readable } from 'node:stream'
+
 class OneToHundredStream extends Readable {
     index = 1
     _read() {
         const i = this.index++;
 
         setTimeout(() => {
-            if (i > 100) {
+            if (i > 10) {
                 this.push(null);
             } else {
                const buff = Buffer.from(String(i))
@@ -17,13 +19,12 @@ class OneToHundredStream extends Readable {
     }
 }
 
-fetch('http://localhost:3334', 
-    {
-        method: 'POST',
-        body: new OneToHundredStream(),
-        duplex: 'half', // ESSENCIAL no Node.js
-        headers: {
-        'Content-Type': 'text/plain',
-         },
-    }
-)
+fetch('http://localhost:3334', {
+    method: 'POST',
+    body: new OneToHundredStream(),
+    duplex: 'half',
+}).then(response => {
+    return response.text
+}).then(data => {
+    console.log(data)
+})
