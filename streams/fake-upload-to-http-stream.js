@@ -1,5 +1,4 @@
-import { realpathSync } from 'node:fs';
-import { Duplex, Readable } from 'node:stream'
+import {  Readable } from 'node:stream'
 
 class OneToHundredStream extends Readable {
     index = 1
@@ -7,7 +6,7 @@ class OneToHundredStream extends Readable {
         const i = this.index++;
 
         setTimeout(() => {
-            if (i > 10) {
+            if (i > 12) {
                 this.push(null);
             } else {
                const buff = Buffer.from(String(i))
