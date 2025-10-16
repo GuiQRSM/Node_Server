@@ -1,52 +1,30 @@
-import http from 'node:http'
+import http from 'node:http';
 
-const users = []
+const users = [];
 
 const server = http.createServer(async (req, res) => {
+  const { method, url } = req;
 
-    const { method, url } = req
-
-        const buffers = [];
-  for await (const chunck of req) {
-    buffers.push(chunck)
+  if (method === 'GET' && url === '/users') {
+    return res.setHeader('Content-type', 'aplication/json').end(JSON.stringify(users));
   }
 
-  try{
-    req.body =  JSON.parse(Buffer.concat(buffers).toString())
-  } catch {
-    req.body = null
+  if (method === 'POST' && url === '/users') {
+    users.push({
+      id: 1,
+      name,
+      email,
+    });
+
+    return res.writeHead(201).end();
   }
 
-  console.log(req.body)
-
-    if(method === 'GET' && url === '/users') {
-      
-        
-        return res
-        .setHeader('Content-type', 'aplication/json')
-        .end(JSON.stringify(users))
-
-    }
-
-    if(method === 'POST' && url === '/users' ) {
-
-        const {name, email} = req.body
-        
-        users.push({
-            id: 1,
-            name,
-            email,
-        })
-
-        return res.writeHead(201).end()
-    }
-
-    return res.writeHead(404).end()
-})
+  return res.writeHead(404).end();
+});
 
 server.listen(3333, () => {
-    console.log('Servidor funcional')
-})
+  console.log('Servidor funcional');
+});
 
 // localhost: 3333;
 // -Dentro desse req eu consigo obter todas as informações da requisição que chega no servidor;
