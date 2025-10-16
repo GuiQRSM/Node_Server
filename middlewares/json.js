@@ -9,4 +9,6 @@ export async function json(req, res) {
   } catch {
     req.body = null;
   }
+
+  res.setHeader('Content-type', 'aplication/json');
 }
