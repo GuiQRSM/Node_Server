@@ -10,6 +10,8 @@ const server = http.createServer(async (req, res) => {
   await json(req, res);
 
   if (method === 'GET' && url === '/users') {
+    const users = database.select('/users');
+
     return res.end(JSON.stringify(users));
   }
 
