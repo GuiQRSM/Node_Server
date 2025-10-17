@@ -1,7 +1,19 @@
 export class Database {
-    database = {}
+  database = {};
 
-    select(table) {}
+  select(table) {
+    const data = this.database[table] ?? [];
 
-    insert{table, data} {}
+    return data;
+  }
+
+  insert(table, data) {
+    if (Array.isArray(this.database[table])) {
+      this.database[table].push(table);
+    } else {
+      this.database[table] = [data];
+    }
+
+    return data;
+  }
 }
