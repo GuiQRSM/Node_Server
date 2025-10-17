@@ -16,11 +16,13 @@ const server = http.createServer(async (req, res) => {
   if (method === 'POST' && url === '/users') {
     const { name, email } = req.body;
 
-    users.push({
+    const user = {
       id: 1,
       name,
       email,
-    });
+    };
+
+    database.insert('users', user);
 
     return res.writeHead(201).end();
   }
