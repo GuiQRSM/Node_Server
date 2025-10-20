@@ -1,3 +1,8 @@
+import { randomUUID } from 'node:crypto';
+import { Database } from '../middlewares/database.js';
+
+const database = new Database();
+
 export const routes = [
   {
     method: 'GET',
