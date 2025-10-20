@@ -3,7 +3,7 @@ export class Database {
   #database = {};
 
   #persist() {
-    fs.writeFile('db.json');
+    fs.writeFile('db.json', JSON.stringify(this.#database));
   }
 
   select(table) {
