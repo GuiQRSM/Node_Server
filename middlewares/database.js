@@ -2,7 +2,6 @@ import fs from 'node:fs/promises';
 
 const databasePath = new URL('db.json', import.meta.url);
 
-console.log(databasePath);
 export class Database {
   #database = {};
 
@@ -26,7 +25,7 @@ export class Database {
 
   insert(table, data) {
     if (Array.isArray(this.#database[table])) {
-      this.#database[table].push(table);
+      this.#database[table].push(data);
     } else {
       this.#database[table] = [data];
     }
