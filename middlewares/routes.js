@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
-import { Database } from '../middlewares/database.js';
+import { Database } from './database.js';
+import path from 'node:path';
 
 const database = new Database();
 
@@ -10,7 +11,7 @@ export const routes = [
     handler: (req, res) => {
       const users = database.select('users');
 
-      return res.end(JSON.stringify(users));
+      return res.end(JSON.stringify('users'));
     },
   },
   {
@@ -20,7 +21,7 @@ export const routes = [
       const { name, email } = req.body;
 
       const user = {
-        id: randomUUID(),
+        id: randomUUID,
         name,
         email,
       };
