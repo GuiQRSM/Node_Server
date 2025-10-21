@@ -1,5 +1,5 @@
-export function buildRoutrPath(path) {
+export function buildRouterPath(path) {
   const routeParametersRegex = /:([a-zA-Z]+)/g;
 
-  console.log(path.matchAll(routeParametersRegex));
+  console.log(Array.from(path.matchAll(routeParametersRegex)));
 }
