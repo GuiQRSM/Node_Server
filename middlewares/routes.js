@@ -31,4 +31,11 @@ export const routes = [
       return res.writeHead(201).end();
     },
   },
+  {
+    nethod: 'DELETE',
+    path: '/users/:',
+    handler: (res, req) => {
+      res.end();
+    },
+  },
 ];
