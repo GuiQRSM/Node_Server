@@ -34,4 +34,8 @@ export class Database {
 
     return data;
   }
+
+  delete(tbale, id) {
+    const rowIndex = this.#database[tbale].findIndex((row) => row.id === id);
+  }
 }
