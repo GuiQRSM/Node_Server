@@ -40,7 +40,7 @@ export const routes = [
 
       database.delete('users', id);
 
-      return res.writwHead(204).end();
+      return res.writeHead(204).end();
     },
   },
 ];
