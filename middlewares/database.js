@@ -37,5 +37,10 @@ export class Database {
 
   delete(tbale, id) {
     const rowIndex = this.#database[tbale].findIndex((row) => row.id === id);
+
+    if (rowIndex > -1) {
+      this.#database[tbale].splice(rowIndex, 1);
+      this.#persist();
+    }
   }
 }
