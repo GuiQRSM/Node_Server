@@ -10,7 +10,7 @@ export class Database {
       .then((data) => {
         this.#database = JSON.parse(data);
       })
-      .catch(this.#persist());
+      .catch(() => this.#persist());
   }
 
   #persist() {
