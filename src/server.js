@@ -16,6 +16,8 @@ const server = http.createServer(async (req, res) => {
 
     req.params = { ...routesParams.groups };
 
+    console.log(routesParams.groups);
+
     return route.handler(req, res);
   }
 
