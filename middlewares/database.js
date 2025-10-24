@@ -21,7 +21,11 @@ export class Database {
     let data = this.#database[table] ?? [];
 
     if (search) {
-      data = data.filter();
+      data = data.filter((row) => {
+        return Object.entries(search).some(([key, value]) => {
+          return row[key].includes(value);
+        });
+      });
     }
 
     return data;
